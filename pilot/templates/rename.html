@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{super()}} - Node List{% endblock %}
+{% block content %}
+<form method="POST">
+    <fieldset>
+        <legend>Rename node {{node.name}}</legend>
+        <div class="clearfix">
+            <label for="">Name</label>
+            <div class='input'>
+                <input type="text" name="name">
+            </div>
+        </div>
+                <div class="actions">
+            <button type="submit" class="btn">submit</button>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}
+

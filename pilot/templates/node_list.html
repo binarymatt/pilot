@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}{{super()}} - Node List{% endblock %}
+{% block extra_js %}
+<script type="text/javascript">
+    $(function () {
+        $("a[rel=popover]").popover({
+            offset: 10,
+            html: true,
+            placement: 'below'
+        }).click(function(e) {
+            e.preventDefault();
+        });
+    });
+</script>
+{% endblock %}
+{% block content %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>State</th>
+            <th>uuid</th>
+            <th>public ip</th>
+            <th>private ip</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for node in nodes %}
+    <tr>
+        <td><a href='#' rel="popover" data-original-title="Node Details" data-content="<pre>{{node.extra}}</pre>">{{node.name}}</a></td>
+        <td>{{node.state}}</td>
+        <td>{{node.uuid}}</td>
+        <td>{{node.public_ip}}</td>
+        <td>{{node.private_ip}}</td>
+        <td>
+            <a class='btn' data-controls-modal="{{node.id}}_action_modal" data-backdrop="true" data-keyboard="true">actions</a>
+        </tr>
+        <div id="{{node.id}}_action_modal" class="modal hide fade" style="display: none; ">
+            <div class="modal-header">
+              <a href="#" class="close">×</a>
+              <h3>{{node.name}} actions</h3>
+            </div>
+            <div class="modal-body" style="text-align: center">
+            <a class='btn success small' href='{{url_for("rename", node_id=node.id)}}'>rename</a>
+            <a class='btn info small change' id='{{node.id}}_pass' href='{{url_for("change_password", node_id=node.id)}}'>change password</a>
+            <a class='btn danger small' href='{{url_for("destroy", node_id=node.id) }}'>delete</a></td>
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

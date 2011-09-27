@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{super()}} - Node List{% endblock %}
+{% block content %}
+<form method="POST">
+    <fieldset>
+        <legend>Are you sure you want to delete {{node.name}}</legend>
+        
+        <div class="actions">
+            <button type="submit" class="btn warning">delete</button>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}
+

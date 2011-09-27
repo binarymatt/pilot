@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}{{super()}} - Flavor List{% endblock %}
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>price</th>
+            <th>ram</th>
+            <th>disk</th>
+            <th>bandwidth</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for size in sizes %}
+        <tr>
+            <td>{{size.id}}</td>
+            <td>{{size.name}}</td>
+            <td>{{size.price}}</td>
+            <td>{{size.ram}}</td>
+            <td>{{size.disk}}</td>
+            <td>{{size.bandwidth}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+

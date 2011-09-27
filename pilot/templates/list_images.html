@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{super()}} - Image List{% endblock %}
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>extra</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for image in images %}
+        <tr>
+            <td>{{image.id}}</td>
+            <td>{{image.name}}</td>
+            <td><pre>{{image.extra}}</pre></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
